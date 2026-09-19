@@ -1,0 +1,25 @@
+import { Router } from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import { analyze } from '../controllers/risk.controller.js';
+import { profile } from '../controllers/vendor.controller.js';
+import { compare, recommend } from '../controllers/route.controller.js';
+import { simulate, get } from '../controllers/payment.controller.js';
+import { insights } from '../controllers/insights.controller.js';
+import { testnet } from '../controllers/settlement.controller.js';
+import { demoLogin } from '../controllers/auth.controller.js';
+import { changed } from '../controllers/risk.controller.js';
+import { invoiceRouter } from './invoice.routes.js';
+
+export const apiRouter = Router();
+apiRouter.post('/auth/demo-login', demoLogin);
+apiRouter.use(requireAuth);
+apiRouter.use('/invoices', invoiceRouter);
+apiRouter.post('/risk/analyze', analyze);
+apiRouter.get('/risk/what-changed/:id', changed);
+apiRouter.get('/vendors/:id/profile', profile);
+apiRouter.post('/routes/compare', compare);
+apiRouter.post('/routes/recommend', recommend);
+apiRouter.post('/payments/simulate', simulate);
+apiRouter.get('/payments/:id', get);
+apiRouter.get('/insights/:merchantId', insights);
+apiRouter.post('/settlement/testnet', testnet);

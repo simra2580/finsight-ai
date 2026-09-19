@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SimplePage } from "@/components/finsight/data-pages";
+export const Route = createFileRoute("/help")({ head: () => ({ meta: [{ title: "Help Center — FinSight AI" },{ name: "description", content: "Get help with FinSight payment intelligence workflows." },{ property: "og:title", content: "Help Center — FinSight AI" },{ property: "og:description", content: "Get help with FinSight payment intelligence workflows." },{ property: "og:type", content: "website" },{ name: "twitter:card", content: "summary_large_image" }] }), component: () => <SimplePage kind="help" /> });
